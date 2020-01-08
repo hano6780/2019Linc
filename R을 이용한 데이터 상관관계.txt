@@ -1,0 +1,37 @@
+R에서 파일 분석
+
+
+*필요한 테이터 파일 불러오기
+> tm<-read.table("d:\\tt.txt", header=T)
+> tm
+
+*상관분석하기
+> cor(tm$light, tm$X2gen)
+[1] 0.7416952
+> cor(tm$light, tm$X2gen, method="pearson")
+[1] 0.7416952
+> cor(tm$radi, tm$X2gen, method="pearson")
+[1] 0.6788715
+> cor(tm$cloud, tm$X2gen, method="pearson")
+[1] -0.7192862
+> cor(tm$temp, tm$X2gen, method="pearson")
+[1] 0.09260015
+
+*그림표현
+> fit<-lm(tm$X2gen~tm$light+tm$radi+tm$cloud)
+> fit
+> plot(fit)
+
+> pp<-rbind(tm$light, tm$radi, tm$cloud)
+
+> ff<-as.data.frame(t(pp))
+
+> uu<-predict(fit, ff)
+> plot(tm$X2gen, type='l', col='red')
+> lines(uu, type='l', col='green')
+> 
+해당값을 sftp 방식으로 tt.txt 가져오기
+sftp rha6780@...<-- 서버
+get tt.txt
+cor(상관관계)
+lm(선형모형)

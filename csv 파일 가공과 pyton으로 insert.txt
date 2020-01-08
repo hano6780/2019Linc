@@ -1,0 +1,21 @@
+import csv
+with open ("dada.csv","r") as reader:
+	for line in reader:
+//print(line)
+		fields=line.strip().split(',')
+		ll=len(fields)
+		for i in range(0,ll):
+			print(fields[i])
+//
+
+import csv
+with open ("dada.csv","r") as reader:
+	for line in reader:
+		stmt="insert into 테이블명 values("
+		fields=line.strip().split(',')
+		ll=len(fields)
+		for i in range(0,ll):
+			stmt=stmt+"'"+fields[i]+"',"
+
+		stmt=stmt[0:-2]+");"
+		print(stmt)
